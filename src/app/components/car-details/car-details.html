@@ -1,0 +1,95 @@
+@if (auto) {
+  <div class="overlay" (click)="close()">
+    <!-- @for avec [auto] : quand on passe à une autre voiture, Angular recrée toute la fenêtre.
+         Les formulaires et la galerie repartent donc de zéro, avec l'animation d'ouverture. -->
+    @for (car of [auto]; track car.id) {
+      <div class="modal" role="dialog" aria-modal="true" [attr.aria-label]="car.brand + ' ' + car.model"
+        (click)="$event.stopPropagation()">
+        <button class="close-button" aria-label="Fermer" (click)="close()"><fa-icon [icon]="faXmark"></fa-icon></button>
+
+        <app-photo-gallery [photos]="car.photos" [altText]="altText(car)"></app-photo-gallery>
+
+        <div class="modal-body">
+          <span class="tag">{{ car.condition === 'neuf' ? 'Neuf' : 'Occasion' }}</span>
+          <h2>{{ car.brand }} {{ car.model }}</h2>
+          <p class="price">{{ car.price }} DNT</p>
+
+          <div class="share">
+            <button class="share-button" (click)="copyLink()">
+              <fa-icon [icon]="linkCopied ? faCircleCheck : faLink"></fa-icon>
+              {{ linkCopied ? 'Lien copié' : 'Copier le lien' }}
+            </button>
+            <a class="share-button" [href]="whatsappShareLink" target="_blank" rel="noopener">
+              <fa-icon [icon]="faWhatsapp"></fa-icon> Partager sur WhatsApp
+            </a>
+          </div>
+
+          <p class="description">{{ car.description }}</p>
+
+          <ul class="specs">
+            <li><span>Année</span>{{ car.year }}</li>
+            <li><span>Carburant</span>{{ car.fuel }}</li>
+            <li><span>Boîte</span>{{ car.transmission }}</li>
+            <li><span>Couleur</span>{{ car.color }}</li>
+            <li><span>Puissance</span>{{ car.power }} CV</li>
+            @if (car.mileage) {
+              <li><span>Kilométrage</span>{{ car.mileage }} km</li>
+            }
+            <li><span>En stock</span>{{ car.availability }}</li>
+          </ul>
+
+          <a class="whatsapp-button" [href]="whatsappLink" target="_blank" rel="noopener">
+            <fa-icon [icon]="faWhatsapp"></fa-icon> Nous écrire sur WhatsApp
+          </a>
+
+          <!-- Deux onglets : "Je suis intéressé" et "Essai routier" -->
+          <div class="tabs">
+            <button class="tab" [class.active]="activeTab === 'interest'" (click)="activeTab = 'interest'">
+              Je suis intéressé(e)
+            </button>
+            <button class="tab" [class.active]="activeTab === 'drive'" (click)="activeTab = 'drive'">
+              Essai routier
+            </button>
+          </div>
+
+          @if (activeTab === 'interest') {
+            <div class="interest-form">
+              @if (messageSent) {
+                <p class="success"><fa-icon [icon]="faCircleCheck"></fa-icon> Votre application e-mail s'est ouverte avec votre message. Il ne reste qu'à l'envoyer</p>
+              } @else {
+                <!-- #name, #phone, #message permettent de lire ce que le visiteur a tapé -->
+                <input #name type="text" placeholder="Votre nom">
+                <input #phone type="tel" placeholder="Votre téléphone">
+                <textarea #message rows="3" placeholder="Votre message (facultatif)"></textarea>
+                @if (errorMessage) {
+                  <p class="error">{{ errorMessage }}</p>
+                }
+                <button class="send-button" (click)="sendInterest(name.value, phone.value, message.value)">
+                  Envoyer
+                </button>
+              }
+            </div>
+          } @else {
+            <div class="interest-form">
+              <app-test-drive-form [auto]="car" [shopEmail]="shopEmail"></app-test-drive-form>
+            </div>
+          }
+
+          @if (similarAutos.length > 0) {
+            <h3 class="similar-title">Voitures similaires</h3>
+            <div class="similar-list">
+              @for (similar of similarAutos; track similar.id) {
+                <button class="similar-card" (click)="openSimilar(similar)">
+                  <img [src]="'images/' + similar.photo" [alt]="altText(similar)"
+                    width="200" height="106" loading="lazy">
+                  <span class="similar-name">{{ similar.brand }} {{ similar.model }}</span>
+                  <span class="similar-price">{{ similar.price }} DNT</span>
+                </button>
+              }
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+}

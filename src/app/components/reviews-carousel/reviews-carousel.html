@@ -1,0 +1,34 @@
+@if (reviews.length > 0) {
+  <section class="reviews-section">
+    <h2 class="reviews-title">Avis de nos clients</h2>
+    @if (isDemo) {
+      <p class="demo-notice">Témoignages fictifs, présentés à titre de démonstration.</p>
+    }
+    <div class="carousel">
+      <button class="arrow arrow-left" aria-label="Avis précédents" (click)="track.scrollBy({ left: -340, behavior: 'smooth' })"><fa-icon [icon]="faChevronLeft"></fa-icon></button>
+
+      <div class="track" #track>
+        @for (review of reviews; track review.author) {
+          <figure class="review" appReveal>
+            <div class="stars" role="img" [attr.aria-label]="review.rating + ' étoiles sur 5'">
+              @for (position of starPositions; track position) {
+                <fa-icon class="star" [class.filled]="isStarFilled(position, review.rating)" [icon]="faStar"></fa-icon>
+              }
+            </div>
+            <blockquote>« {{ review.text }} »</blockquote>
+            <figcaption>
+              <img class="avatar" [src]="'avatars/' + review.photo" [alt]="'Avatar de ' + review.author"
+                width="48" height="48" loading="lazy" (error)="hideBrokenAvatar($event)">
+              <div class="author">
+                <strong>{{ review.author }}</strong>
+                <span>{{ review.city }} · {{ review.car }}</span>
+              </div>
+            </figcaption>
+          </figure>
+        }
+      </div>
+
+      <button class="arrow arrow-right" aria-label="Avis suivants" (click)="track.scrollBy({ left: 340, behavior: 'smooth' })"><fa-icon [icon]="faChevronRight"></fa-icon></button>
+    </div>
+  </section>
+}

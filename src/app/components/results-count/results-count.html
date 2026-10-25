@@ -1,0 +1,14 @@
+@if (count === 0) {
+  <div class="empty-box">
+    <p class="empty-title">Aucune voiture trouvée</p>
+    @if (showingFavorites) {
+      <p>Aucun de vos favoris ne correspond. Essayez d'enlever un filtre, ou cliquez sur « Favoris » pour revoir toutes les voitures.</p>
+    } @else {
+      <p>Essayez d'enlever un filtre, d'élargir la fourchette de prix ou de modifier votre recherche de marque.</p>
+    }
+  </div>
+} @else {
+  <p class="count">
+    <strong>{{ count }}</strong> {{ count === 1 ? 'voiture trouvée' : 'voitures trouvées' }}
+  </p>
+}

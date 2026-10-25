@@ -1,0 +1,42 @@
+<app-head-bar
+  [shopName]="shopName"
+  [favoritesCount]="favoriteIds.length"
+  [showingFavorites]="showOnlyFavorites"
+  (contactClicked)="goToContact()"
+  (favoritesClicked)="toggleShowFavorites()"></app-head-bar>
+
+<main id="catalogue">
+  <app-search-bar [text]="selectedBrand" (OnSearch)="onSearch($event)"></app-search-bar>
+  <app-filter-bar [options]="filterOptions" (filtersChanged)="onFiltersChanged($event)"></app-filter-bar>
+
+  <app-results-count [count]="totalCount" [showingFavorites]="showOnlyFavorites"></app-results-count>
+
+  <!-- Les listes de voitures sont cachées quand aucune voiture ne correspond -->
+  @if (totalCount > 0) {
+    <app-car-carousel title="Voitures neuves" [autos]="newAutos" [favoriteIds]="favoriteIds"
+      (carSelected)="selectCar($event)" (favoriteToggled)="toggleFavorite($event)"></app-car-carousel>
+    <app-car-carousel title="Voitures d'occasion" [autos]="usedAutos" [favoriteIds]="favoriteIds"
+      (carSelected)="selectCar($event)" (favoriteToggled)="toggleFavorite($event)"></app-car-carousel>
+  }
+
+  @if (recentAutos.length > 0) {
+    <app-car-carousel title="Récemment consultées" [autos]="recentAutos" [favoriteIds]="favoriteIds"
+      (carSelected)="selectCar($event)" (favoriteToggled)="toggleFavorite($event)"></app-car-carousel>
+  }
+
+  <app-news-section [news]="news" [updatedOn]="newsUpdatedOn" [brands]="brands"
+    (brandSelected)="onNewsBrandSelected($event)"></app-news-section>
+
+  <app-why-us></app-why-us>
+  <app-trade-in-form [shopEmail]="shopEmail"></app-trade-in-form>
+  <app-reviews-carousel [reviews]="reviews" [isDemo]="reviewsAreDemo"></app-reviews-carousel>
+
+  <app-brand-list [brands]="brands" [selectedBrand]="selectedBrand" (brandSelected)="onBrandSelected($event)"></app-brand-list>
+</main>
+
+<!-- id="contact" : c'est ici que le bouton Contact nous emmène -->
+<app-footer id="contact" [shopName]="shopName" [email]="shopEmail" [phone]="shopPhone" [address]="shopAddress"></app-footer>
+
+<app-car-details [auto]="selectedCar" [similarAutos]="similarAutos"
+  [shopEmail]="shopEmail" [shopPhone]="shopPhone"
+  (closed)="closeDetails()" (similarSelected)="selectCar($event)"></app-car-details>

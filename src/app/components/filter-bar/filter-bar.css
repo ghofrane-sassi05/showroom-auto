@@ -1,0 +1,66 @@
+.filter-bar {
+  max-width: 1200px;
+  margin: 20px auto 10px;
+  padding: 20px 24px;
+  background-color: var(--blanc);
+  border-radius: 16px;
+  box-shadow: var(--ombre);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 18px 20px;
+  align-items: end;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--gris);
+}
+
+label strong {
+  color: var(--accent);
+}
+
+select {
+  padding: 10px 14px;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: var(--blanc);
+  cursor: pointer;
+}
+
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* Curseurs de prix */
+input[type='range'] {
+  width: 100%;
+  height: 40px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.reset-button {
+  padding: 11px 24px;
+  border: 2px solid var(--noir);
+  background-color: transparent;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.reset-button:hover {
+  background-color: var(--noir);
+  color: var(--blanc);
+}

@@ -1,0 +1,64 @@
+# Ce fichier publie automatiquement le site sur GitHub Pages
+# à chaque fois que vous envoyez (push) du code sur la branche main ou master.
+name: Déploiement sur GitHub Pages
+
+# Se lance à chaque push, et peut aussi être lancé à la main (onglet Actions > Run workflow)
+on: [push, workflow_dispatch]
+
+# Autorisations nécessaires pour publier sur GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Si deux déploiements se suivent, on garde seulement le plus récent
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Installer Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Installer les dépendances
+        run: npm ci
+
+      # Si un test échoue, le site n'est pas publié : on évite de mettre en ligne un site cassé
+      - name: Lancer les tests
+        run: npx ng test --watch=false
+
+      - name: Construire le site
+        run: |
+          REPO="${{ github.event.repository.name }}"
+          # Un dépôt nommé "votre-nom.github.io" est publié à la racine, les autres dans /nom-du-dépôt/
+          case "$REPO" in
+            *.github.io) BASE="/" ;;
+            *) BASE="/$REPO/" ;;
+          esac
+          echo "Adresse de base du site : $BASE"
+          npx ng build --configuration production --base-href "$BASE"
+
+      - name: Envoyer les fichiers du site
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist/showroom-auto/browser
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publier sur GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

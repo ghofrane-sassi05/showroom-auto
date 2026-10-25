@@ -1,0 +1,29 @@
+<section class="trade-in" id="reprise" appReveal>
+  <div class="intro">
+    <h2>Reprise de votre véhicule</h2>
+    <p>Vous souhaitez changer de voiture ? Décrivez votre véhicule actuel : nous revenons vers vous avec une estimation.</p>
+  </div>
+
+  <!-- Les champs "required" sont vérifiés par le navigateur avant l'envoi -->
+  <form #form class="form" (submit)="send($event, form)">
+    <input name="brand" type="text" placeholder="Marque" required>
+    <input name="model" type="text" placeholder="Modèle" required>
+    <input name="year" type="number" placeholder="Année" min="1990" max="2030" required>
+    <input name="mileage" type="number" placeholder="Kilométrage (km)" min="0" required>
+    <select name="condition" aria-label="État du véhicule" required>
+      <option value="" disabled selected>État du véhicule</option>
+      @for (condition of conditions; track condition) {
+        <option [value]="condition">{{ condition }}</option>
+      }
+    </select>
+    <input name="name" type="text" placeholder="Votre nom" required>
+    <input name="phone" type="tel" placeholder="Votre téléphone" required>
+    <textarea name="message" rows="1" placeholder="Précisions (facultatif)"></textarea>
+
+    <button class="send-button" type="submit">Demander une estimation</button>
+  </form>
+
+  @if (messageSent) {
+    <p class="success"><fa-icon [icon]="faCircleCheck"></fa-icon> Votre application e-mail s'est ouverte avec votre demande. Il ne reste qu'à l'envoyer</p>
+  }
+</section>

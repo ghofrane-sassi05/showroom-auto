@@ -1,0 +1,295 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  animation: fade-in 0.25s ease-out;
+}
+
+.modal {
+  position: relative;
+  background-color: var(--blanc);
+  border-radius: 20px;
+  max-width: 640px;
+  width: 100%;
+  max-height: 92vh;
+  overflow-y: auto;
+  animation: slide-up 0.35s ease-out;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(40px) scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+
+.close-button {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 5;
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--noir);
+  color: var(--blanc);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  background-color: var(--accent);
+}
+
+.modal-body {
+  padding: 24px 28px 30px;
+}
+
+.tag {
+  background-color: var(--noir);
+  color: var(--blanc);
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+h2 {
+  margin: 14px 0 6px;
+}
+
+.price {
+  color: var(--accent);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 14px;
+}
+
+/* Boutons de partage */
+.share {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.share-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 20px;
+  background-color: var(--blanc);
+  color: var(--noir);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.share-button:hover {
+  border-color: var(--accent);
+}
+
+.description {
+  line-height: 1.6;
+  color: #374151;
+}
+
+/* Tableau des caractéristiques */
+.specs {
+  list-style: none;
+  padding: 0;
+  margin: 18px 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.specs li {
+  background-color: var(--gris-clair);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 600;
+}
+
+.specs span {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--gris);
+}
+
+/* WhatsApp */
+.whatsapp-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 22px;
+  padding: 12px;
+  background-color: #25d366;
+  color: var(--blanc);
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 12px;
+  transition: background-color 0.2s;
+}
+
+.whatsapp-button:hover {
+  background-color: #1ebe5a;
+}
+
+/* Onglets */
+.tabs {
+  display: flex;
+  margin-top: 24px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.tab {
+  flex: 1;
+  padding: 12px 8px;
+  border: none;
+  background: transparent;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--gris);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.tab.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* Formulaires */
+.interest-form {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.interest-form input,
+.interest-form textarea {
+  padding: 10px 14px;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+.interest-form input:focus,
+.interest-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.send-button {
+  padding: 12px;
+  background-color: var(--noir);
+  color: var(--blanc);
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.send-button:hover {
+  background-color: var(--accent);
+}
+
+.error {
+  margin: 0;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.success {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  color: var(--vert);
+  font-weight: 500;
+}
+
+/* Voitures similaires */
+.similar-title {
+  margin: 30px 0 12px;
+}
+
+.similar-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.similar-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 0 10px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  background-color: var(--blanc);
+  font-family: inherit;
+  text-align: left;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.similar-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+.similar-card img {
+  width: 100%;
+  aspect-ratio: 200 / 106;
+  object-fit: cover;
+  display: block;
+}
+
+.similar-name {
+  padding: 0 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.similar-price {
+  padding: 0 10px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+@media (max-width: 520px) {
+  .similar-list {
+    grid-template-columns: 1fr;
+  }
+}

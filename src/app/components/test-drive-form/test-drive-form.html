@@ -1,0 +1,31 @@
+@if (messageSent) {
+  <p class="success"><fa-icon [icon]="faCircleCheck"></fa-icon> Votre application e-mail s'est ouverte avec votre demande d'essai. Il ne reste qu'à l'envoyer</p>
+} @else {
+  <!-- Les champs "required" sont vérifiés par le navigateur avant l'envoi -->
+  <form #form class="form" (submit)="send($event, form)">
+    <input name="name" type="text" placeholder="Votre nom" required>
+    <input name="phone" type="tel" placeholder="Votre téléphone" required>
+
+    <label for="drive-date">Date souhaitée (à partir de demain)</label>
+    <input id="drive-date" name="date" type="date" [min]="minDate" required
+      (change)="onDateChange($any($event.target).value)">
+
+    @if (dayMessage) {
+      <p class="error">{{ dayMessage }}</p>
+    }
+
+    @if (availableSlots.length > 0) {
+      <label for="drive-time">Heure</label>
+      <select id="drive-time" name="time" required>
+        @for (slot of availableSlots; track slot) {
+          <option [value]="slot">{{ slot }}</option>
+        }
+      </select>
+    }
+
+    <textarea name="message" rows="2" placeholder="Message (facultatif)"></textarea>
+    <button class="send-button" type="submit" [disabled]="availableSlots.length === 0">
+      Réserver mon essai
+    </button>
+  </form>
+}

@@ -1,0 +1,78 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--noir);
+  color: var(--blanc);
+  border-bottom: 3px solid var(--accent);
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.shop-name {
+  margin: 0;
+  font-size: 1.6rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.buttons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.favorites-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: transparent;
+  color: var(--blanc);
+  border: 2px solid var(--blanc);
+  padding: 8px 22px;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.favorites-button:hover,
+.favorites-button.active {
+  background-color: var(--accent);
+  border-color: var(--accent);
+}
+
+.contact-button {
+  background-color: var(--accent);
+  color: var(--blanc);
+  border: none;
+  padding: 10px 28px;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.contact-button:hover {
+  background-color: var(--accent-fonce);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+  .header-content {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .shop-name {
+    font-size: 1.2rem;
+  }
+}

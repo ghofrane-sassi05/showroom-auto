@@ -1,0 +1,199 @@
+.carousel-section {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 24px;
+}
+
+.carousel-title {
+  font-size: 1.7rem;
+  border-left: 5px solid var(--accent);
+  padding-left: 14px;
+  margin-bottom: 20px;
+}
+
+.count {
+  color: var(--gris);
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.empty {
+  background-color: var(--blanc);
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  color: var(--gris);
+}
+
+/* Le carrousel : une rangée horizontale qui défile */
+.carousel {
+  position: relative;
+}
+
+.track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 10px 4px 24px;
+  scrollbar-width: none; /* on cache la barre, les boutons suffisent */
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+.arrow {
+  position: absolute;
+  top: 40%;
+  z-index: 10;
+  width: 46px;
+  height: 46px;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--noir);
+  color: var(--blanc);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  box-shadow: var(--ombre);
+  transition: background-color 0.2s;
+}
+
+.arrow:hover {
+  background-color: var(--accent);
+}
+
+.arrow-left {
+  left: -18px;
+}
+
+.arrow-right {
+  right: -18px;
+}
+
+/* Une carte voiture */
+.auto-card {
+  flex: 0 0 290px;
+  scroll-snap-align: start;
+  background-color: var(--blanc);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--ombre);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s;
+}
+
+.auto-card:hover {
+  transform: translateY(-6px);
+}
+
+.photo-box {
+  position: relative;
+}
+
+.photo-box img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+.badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background-color: var(--vert);
+  color: var(--blanc);
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.heart {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #9ca3af;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.heart:hover {
+  transform: scale(1.15);
+}
+
+.heart.liked {
+  color: var(--accent);
+}
+
+.badge-used {
+  background-color: var(--gris-fonce);
+}
+
+.details {
+  padding: 16px 18px 6px;
+  flex: 1;
+}
+
+.details h3 {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+}
+
+.price {
+  color: var(--accent);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.info {
+  margin: 4px 0;
+  font-size: 0.9rem;
+  color: var(--gris);
+}
+
+.stock {
+  font-weight: 600;
+}
+
+.see-more {
+  margin: 12px 18px 18px;
+  padding: 10px;
+  border: 2px solid var(--noir);
+  background-color: transparent;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.see-more:hover {
+  background-color: var(--noir);
+  color: var(--blanc);
+}
+
+@media (max-width: 700px) {
+  .arrow-left {
+    left: -8px;
+  }
+  .arrow-right {
+    right: -8px;
+  }
+}

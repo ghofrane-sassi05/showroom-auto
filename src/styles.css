@@ -1,0 +1,73 @@
+/* Styles globaux : couleurs et réglages communs à tout le site */
+:root {
+  --noir: #111111;
+  --gris-fonce: #1e1e24;
+  --gris: #6b7280;
+  --gris-clair: #f3f4f6;
+  --blanc: #ffffff;
+  --accent: #c8102e;
+  --accent-fonce: #9d0c24;
+  --vert: #15803d;
+  --ombre: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', Arial, sans-serif;
+  background-color: var(--gris-clair);
+  color: var(--noir);
+}
+
+button {
+  font-family: inherit;
+}
+
+/* ----- Animation d'apparition au défilement (directive appReveal) ----- */
+.reveal {
+  opacity: 0;
+  translate: 0 24px;
+}
+
+.reveal.visible {
+  animation: reveal-in 0.6s ease-out forwards;
+}
+
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    translate: 0 24px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+/* Pour les personnes qui préfèrent moins d'animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    translate: none;
+  }
+}
+
+/* Le catalogue reste visible sous l'en-tête fixe quand on y remonte */
+#catalogue {
+  scroll-margin-top: 70px;
+}

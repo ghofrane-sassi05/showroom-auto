@@ -1,0 +1,6 @@
+<div class="search-container">
+  <label for="brand-search">Marque</label>
+  <input id="brand-search" type="text" #brand [value]="text" placeholder="Ex : Audi, BMW..."
+    (input)="search(brand.value)">
+  <fa-icon class="search-icon" [icon]="faMagnifyingGlass" (click)="search(brand.value)"></fa-icon>
+</div>

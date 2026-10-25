@@ -1,0 +1,12 @@
+<section class="why-us">
+  <h2 class="why-title">Pourquoi nous choisir ?</h2>
+  <div class="reasons">
+    @for (reason of reasons; track reason.title) {
+      <article class="reason" appReveal>
+        <div class="icon"><fa-icon [icon]="reason.icon"></fa-icon></div>
+        <h3>{{ reason.title }}</h3>
+        <p>{{ reason.text }}</p>
+      </article>
+    }
+  </div>
+</section>

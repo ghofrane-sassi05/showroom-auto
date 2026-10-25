@@ -1,0 +1,10 @@
+<section class="brands-section">
+  <h2 class="brands-title">Nos marques</h2>
+  <div class="brands-list">
+    @for (brand of brands; track brand) {
+      <button class="brand" appReveal [class.active]="isSelected(brand)" [title]="brand" (click)="onBrandClick(brand)">
+        <img [src]="logoPath(brand)" [alt]="'Logo ' + brand" width="120" height="80" loading="lazy">
+      </button>
+    }
+  </div>
+</section>

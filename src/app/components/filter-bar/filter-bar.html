@@ -1,0 +1,77 @@
+<div class="filter-bar">
+  <!-- Curseurs de prix : [min] et [max] doivent être écrits avant [value] -->
+  <div class="filter price-filter">
+    <label for="min-price">Prix minimum : <strong>{{ selectedMinPrice }} DNT</strong></label>
+    <input id="min-price" type="range" step="5"
+      [min]="options.minPrice" [max]="options.maxPrice" [value]="selectedMinPrice"
+      (input)="onMinPriceChange($any($event.target).value)">
+  </div>
+
+  <div class="filter price-filter">
+    <label for="max-price">Prix maximum : <strong>{{ selectedMaxPrice }} DNT</strong></label>
+    <input id="max-price" type="range" step="5"
+      [min]="options.minPrice" [max]="options.maxPrice" [value]="selectedMaxPrice"
+      (input)="onMaxPriceChange($any($event.target).value)">
+  </div>
+
+  <div class="filter">
+    <label for="model">Modèle</label>
+    <select id="model" [value]="selectedModel" (change)="onModelChange($any($event.target).value)">
+      <option value="">Tous les modèles</option>
+      @for (model of options.models; track model) {
+        <option [value]="model">{{ model }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="filter">
+    <label for="fuel">Carburant</label>
+    <select id="fuel" [value]="selectedFuel" (change)="onFuelChange($any($event.target).value)">
+      <option value="">Tous</option>
+      @for (fuel of options.fuels; track fuel) {
+        <option [value]="fuel">{{ fuel }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="filter">
+    <label for="transmission">Boîte de vitesses</label>
+    <select id="transmission" [value]="selectedTransmission" (change)="onTransmissionChange($any($event.target).value)">
+      <option value="">Toutes</option>
+      @for (transmission of options.transmissions; track transmission) {
+        <option [value]="transmission">{{ transmission }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="filter">
+    <label for="color">Couleur</label>
+    <select id="color" [value]="selectedColor" (change)="onColorChange($any($event.target).value)">
+      <option value="">Toutes</option>
+      @for (color of options.colors; track color) {
+        <option [value]="color">{{ color }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="filter">
+    <label for="year">Année (à partir de)</label>
+    <select id="year" [value]="selectedMinYear" (change)="onYearChange($any($event.target).value)">
+      <option value="0">Toutes</option>
+      @for (year of options.years; track year) {
+        <option [value]="year">{{ year }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="filter">
+    <label for="sort">Trier par</label>
+    <select id="sort" [value]="selectedSort" (change)="onSortChange($any($event.target).value)">
+      @for (option of sortOptions; track option.value) {
+        <option [value]="option.value">{{ option.label }}</option>
+      }
+    </select>
+  </div>
+
+  <button class="reset-button" (click)="reset()">Réinitialiser</button>
+</div>

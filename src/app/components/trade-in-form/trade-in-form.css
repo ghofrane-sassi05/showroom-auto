@@ -1,0 +1,75 @@
+.trade-in {
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 36px 32px;
+  background-color: var(--noir);
+  color: var(--blanc);
+  border-radius: 20px;
+  box-shadow: var(--ombre);
+}
+
+.intro h2 {
+  margin: 0 0 8px;
+  font-size: 1.7rem;
+}
+
+.intro p {
+  margin: 0 0 24px;
+  color: #d1d5db;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+input,
+select,
+textarea {
+  padding: 12px 14px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.send-button {
+  padding: 12px;
+  background-color: var(--accent);
+  color: var(--blanc);
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.send-button:hover {
+  background-color: var(--accent-fonce);
+}
+
+.success {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 18px 0 0;
+  color: #4ade80;
+  font-weight: 500;
+}
+
+@media (max-width: 600px) {
+  .trade-in {
+    margin: 40px 16px;
+    padding: 28px 20px;
+  }
+}

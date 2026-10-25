@@ -1,0 +1,27 @@
+<div class="gallery">
+  <div class="main-photo">
+    <!-- Toutes les photos sont empilées : seule la photo choisie est visible (fondu en douceur) -->
+    @for (photo of photos; track photo; let i = $index) {
+      <img [src]="'images/' + photo" [class.visible]="i === currentIndex"
+        [alt]="altText + ' - photo ' + (i + 1) + ' sur ' + photos.length"
+        width="800" height="424" [attr.loading]="i === 0 ? null : 'lazy'">
+    }
+
+    @if (photos.length > 1) {
+      <button class="arrow arrow-left" aria-label="Photo précédente" (click)="previous()"><fa-icon [icon]="faChevronLeft"></fa-icon></button>
+      <button class="arrow arrow-right" aria-label="Photo suivante" (click)="next()"><fa-icon [icon]="faChevronRight"></fa-icon></button>
+      <span class="counter">{{ currentIndex + 1 }} / {{ photos.length }}</span>
+    }
+  </div>
+
+  @if (photos.length > 1) {
+    <div class="thumbnails">
+      @for (photo of photos; track photo; let i = $index) {
+        <button class="thumbnail" [class.active]="i === currentIndex"
+          [attr.aria-label]="'Voir la photo ' + (i + 1)" (click)="show(i)">
+          <img [src]="'images/' + photo" alt="" width="120" height="64" loading="lazy">
+        </button>
+      }
+    </div>
+  }
+</div>

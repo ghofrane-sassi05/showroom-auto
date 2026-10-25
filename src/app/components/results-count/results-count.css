@@ -1,0 +1,33 @@
+.count {
+  max-width: 1200px;
+  margin: 20px auto 0;
+  padding: 0 24px;
+  color: var(--gris);
+}
+
+.count strong {
+  color: var(--accent);
+  font-size: 1.2rem;
+}
+
+.empty-box {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 40px 24px;
+  background-color: var(--blanc);
+  border: 2px dashed #d1d5db;
+  border-radius: 16px;
+  text-align: center;
+  color: var(--gris);
+}
+
+.empty-title {
+  margin: 0 0 8px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--noir);
+}
+
+.empty-box p {
+  margin: 4px 0;
+}

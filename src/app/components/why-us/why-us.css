@@ -1,0 +1,55 @@
+.why-us {
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 0 24px;
+}
+
+.why-title {
+  font-size: 1.7rem;
+  border-left: 5px solid var(--accent);
+  padding-left: 14px;
+  margin-bottom: 24px;
+}
+
+.reasons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+.reason {
+  background-color: var(--blanc);
+  border-radius: 16px;
+  padding: 28px 24px;
+  text-align: center;
+  box-shadow: var(--ombre);
+  transition: transform 0.25s;
+}
+
+.reason:hover {
+  transform: translateY(-6px);
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: var(--accent);
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background-color: var(--gris-clair);
+  margin: 0 auto 12px;
+}
+
+.reason h3 {
+  margin: 0 0 8px;
+}
+
+.reason p {
+  margin: 0;
+  color: var(--gris);
+  line-height: 1.5;
+  font-size: 0.95rem;
+}

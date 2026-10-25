@@ -1,0 +1,59 @@
+@if (news.length > 0) {
+  <section class="news-section">
+    <h2 class="news-title">Actualités et nouveautés auto</h2>
+    @if (updatedOn) {
+      <p class="updated">Sélection d'informations du monde automobile · mise à jour : {{ updatedOn }}</p>
+    }
+
+    <div class="tabs">
+      @for (category of categories; track category.value) {
+        <button class="tab" [class.active]="selectedCategory === category.value"
+          (click)="selectCategory(category.value)">
+          {{ category.label }}
+        </button>
+      }
+    </div>
+
+    <div class="carousel">
+      <button class="arrow arrow-left" aria-label="Actualités précédentes" (click)="track.scrollBy({ left: -360, behavior: 'smooth' })">
+        <fa-icon [icon]="faChevronLeft"></fa-icon>
+      </button>
+
+      <div class="track" #track>
+        @for (item of visibleNews; track item.id) {
+          <article class="news-card" appReveal>
+            <div class="card-top">
+              @if (item.brand !== '') {
+                <img class="brand-logo" [src]="logoPath(item.brand)" [alt]="'Logo ' + item.brand"
+                  width="60" height="40" loading="lazy" (error)="hideBrokenLogo($event)">
+              } @else {
+                <span class="general-icon"><fa-icon [icon]="faNewspaper"></fa-icon></span>
+              }
+              <span class="badge" [class.badge-news]="item.category === 'Actualité'">{{ item.category }}</span>
+            </div>
+
+            <p class="date">{{ item.dateLabel }}</p>
+            <h3>{{ item.title }}</h3>
+            <p class="summary">{{ item.summary }}</p>
+
+            <div class="card-bottom">
+              <a class="read-more" [href]="item.url" target="_blank" rel="noopener noreferrer">
+                Lire la suite <fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon>
+              </a>
+              <span class="source">Source : {{ item.sourceName }}</span>
+              @if (isShowroomBrand(item.brand)) {
+                <button class="see-brand" (click)="onSeeBrand(item.brand)">
+                  <fa-icon [icon]="faCarSide"></fa-icon> Voir nos {{ item.brand }}
+                </button>
+              }
+            </div>
+          </article>
+        }
+      </div>
+
+      <button class="arrow arrow-right" aria-label="Actualités suivantes" (click)="track.scrollBy({ left: 360, behavior: 'smooth' })">
+        <fa-icon [icon]="faChevronRight"></fa-icon>
+      </button>
+    </div>
+  </section>
+}

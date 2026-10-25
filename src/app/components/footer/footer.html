@@ -1,0 +1,28 @@
+<footer class="footer">
+  <div class="footer-content">
+    <div class="infos">
+      <h2>Contactez {{ shopName }}</h2>
+      <p><fa-icon class="info-icon" [icon]="faLocationDot"></fa-icon> {{ address }}</p>
+      <p><fa-icon class="info-icon" [icon]="faEnvelope"></fa-icon> <a [href]="'mailto:' + email">{{ email }}</a></p>
+      <p><fa-icon class="info-icon" [icon]="faPhone"></fa-icon> <a [href]="'tel:' + phone">{{ phone }}</a></p>
+    </div>
+
+    <div class="hours">
+      <h2>Horaires</h2>
+      <p class="status" [class.open]="status.isOpen">
+        <span class="dot"></span> {{ status.text }}
+      </p>
+      <ul>
+        @for (day of hours; track day.day) {
+          <li [class.today]="day.day === todayName">
+            <span>{{ day.day }}</span>
+            <span>{{ day.open === '' ? 'Fermé' : day.open + ' - ' + day.close }}</span>
+          </li>
+        }
+      </ul>
+    </div>
+
+    <iframe class="map" [src]="mapUrl" title="Carte du showroom" loading="lazy"></iframe>
+  </div>
+  <p class="copyright">© 2026 {{ shopName }} - Tous droits réservés</p>
+</footer>

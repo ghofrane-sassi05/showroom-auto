@@ -1,0 +1,105 @@
+.gallery {
+  background-color: var(--gris-clair);
+  border-radius: 20px 20px 0 0;
+}
+
+.main-photo {
+  position: relative;
+  aspect-ratio: 800 / 424;
+  overflow: hidden;
+  border-radius: 20px 20px 0 0;
+}
+
+.main-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.main-photo img.visible {
+  opacity: 1;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(17, 17, 17, 0.75);
+  color: var(--blanc);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.arrow:hover {
+  background-color: var(--accent);
+}
+
+.arrow-left {
+  left: 12px;
+}
+
+.arrow-right {
+  right: 12px;
+}
+
+.counter {
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  z-index: 2;
+  background-color: rgba(17, 17, 17, 0.75);
+  color: var(--blanc);
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+
+.thumbnails {
+  display: flex;
+  gap: 10px;
+  padding: 10px 14px;
+  overflow-x: auto;
+}
+
+.thumbnail {
+  flex: 0 0 auto;
+  width: 84px;
+  padding: 0;
+  border: 3px solid transparent;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--blanc);
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s, border-color 0.2s;
+}
+
+.thumbnail img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 800 / 424;
+  object-fit: cover;
+}
+
+.thumbnail:hover,
+.thumbnail.active {
+  opacity: 1;
+}
+
+.thumbnail.active {
+  border-color: var(--accent);
+}
